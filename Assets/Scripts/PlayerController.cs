@@ -1,5 +1,5 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using TMPro; //libreria para usar textos
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,11 +7,15 @@ public class PlayerController : MonoBehaviour
     public int score = 0;
     public bool hasKey = false;
     public bool hasWater = false;
+    public TextMeshProUGUI textScore;
+
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        UpdateTextScore();
     }
 
     // Update is called once per frame
@@ -35,10 +39,12 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Collectable"))
         {
             score = score + 1;
+            UpdateTextScore();
 
             Destroy(other.gameObject);
             Debug.Log("Collected!!!");
             Debug.Log("Score: " + score);
+
 
         }
         if (other.CompareTag("Key"))
@@ -54,16 +60,20 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-
-
-
         //condicion de victoria
         if (score >= 3 && hasKey && !hasWater)
         {
             Debug.Log("Has ganado, Tienes suficientes puntos y la llave!");
         }
 
-    
+
     }
+
+    void UpdateTextScore()
+    {
+        textScore.text = "Score: " + score;
+    }
+
+    
 
 }
