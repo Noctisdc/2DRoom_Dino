@@ -3,10 +3,11 @@ using TMPro; //libreria para usar textos
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f; //variable para guardar la velocidad
+    public float speed = 4000f; //variable para guardar la velocidad
     public int score = 0;
     public bool hasKey = false;
     public bool hasWater = false;
+    public bool hasPoison = false;
     public TextMeshProUGUI textScore;
 
 
@@ -56,12 +57,18 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             hasWater = true;
-            Debug.Log("has tocado el agua y no puedes ganar!");
+            Debug.Log("has tocado la lava y no puedes ganar!");
+            Destroy(gameObject);
+        }
+        if (other.CompareTag("Veneno"))
+        {
+            hasPoison = true;
+            Debug.Log("has tocado Veneno, moriste");
             Destroy(gameObject);
         }
 
         //condicion de victoria
-        if (score >= 3 && hasKey && !hasWater)
+        if (score >= 3 && hasKey)
         {
             Debug.Log("Has ganado, Tienes suficientes puntos y la llave!");
         }
