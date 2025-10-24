@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro; //libreria para usar textos
-
+using System;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 4000f; //variable para guardar la velocidad
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Collectable"))
         {
-            score = score + 1;
+            score = score + 10;
             UpdateTextScore();
 
             Destroy(other.gameObject);
@@ -78,9 +78,8 @@ public class PlayerController : MonoBehaviour
 
     void UpdateTextScore()
     {
-        textScore.text = "Score: " + score;
+        textScore.text = "Monedas: " + score;
+
     }
-
     
-
 }
